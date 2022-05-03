@@ -1,7 +1,10 @@
 # nashville-housing
-DATA CLEANING USING SQL: The following steps were taken to make this data cleaner and easier to analyze and use.  Each of these steps demonstrates the SQL Code necessary to perform the operations that are specified.
 
-Step 1: Cleaning the Date Field.  
+## DATA CLEANING USING SQL: 
+
+The following steps were taken to make this data cleaner and easier to analyze and use.  Each of these steps demonstrates the SQL Code necessary to perform the operations that are specified.
+
+### Step 1: Cleaning the Date Field.  
 
 The Sale Date Field began with a format that looks like this:   [2013-04-09 00:00:00.000]
  
@@ -12,7 +15,7 @@ Step 1 is to remove all of the zeroes because we do not need to know the time th
 
 Date now appears as 2013-04-09
 
-Step 2: Populate Property Addresses that are null
+### Step 2: Populate Property Addresses that are null
 
 There are 35 rows where the Property Address is null. On a list of housing sales, that is a problem. Upon further examination, there are duplicate Parcel ID numbers and in one row the address is blank, but in the other row, it is not.  We will develop an update statement that will populate the null rows with the addresses from the other rows, only in the situation where both rows have the same Parcel ID #.
 
@@ -41,7 +44,7 @@ We use the following language to query and then update the table:
 Now there are no longer any null property addresses in our table.
 
 
-Step 3: Breaking Out Property Address into Individual Columns using SUBSTRING
+### Step 3: Breaking Out Property Address into Individual Columns using SUBSTRING
 
 The “PropertyAddress” column contains both the street address and the city name in one column. It would be better to have them separated into two columns.  We can do this by using the following queries and ALTER commands.
 
@@ -67,7 +70,7 @@ The “PropertyAddress” column contains both the street address and the city n
 	DROP COLUMN PropertyAddress;
 
 
-STEP 4: Breaking Out Owner Address Column using PARSENAME
+### STEP 4: Breaking Out Owner Address Column using PARSENAME
 
 Our table also contains columns for the Owner Address, which may be different from the Property Address. The Owner Address Column contains Street Addresses, Cities and States, so it must be broken down into 3 new columns. The following queries and ALTER commands will accomplish this using the PARSENAME command.
 
@@ -98,7 +101,7 @@ Our table also contains columns for the Owner Address, which may be different fr
  	-- The OwnerName was also deleted to protect individuals’ privacy.
 
 
-Step 5: Change Y and N to Yes and No in “Sold As Vacant Field”
+### Step 5: Change Y and N to Yes and No in “Sold As Vacant Field”
 
 There are inconsistencies in this field, because some values were entered as “Y” or “N” and other times they were entered as “Yes” or “No”.
 
@@ -123,7 +126,7 @@ We updated the table using the following CASE Statement
 	 END
 
 
-Step 6: Remove Duplicates
+### Step 6: Remove Duplicates
 
 After visually examining the data closely and looking for duplicates, it is obvious that some records contain identical information in multiple fields.  These records need to be removed in order to get accurate analytics.
 
@@ -172,7 +175,7 @@ This SQL code was  used to query for duplicates and then remove them from the ta
 	FROM RowNumCTE
 	WHERE row_num > 1
 
-Step 7: Delete Unused Columns
+### Step 7: Delete Unused Columns
 
 The last task is the simplest one.  Certain columns are unnecessary and will not be needed for analysis, so we can remove them using the following code:
 
