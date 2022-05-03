@@ -40,7 +40,7 @@ SUBSTRING (PropertyAddress, 1, CHARINDEX(',', PropertyAddress) -1) AS Address
 FROM PortfolioProject.dbo.NashvilleHousing
 
 ALTER TABLE NashvilleHousing
-Add PropertySplitAddress Nvarchar(255);
+ADD PropertySplitAddress Nvarchar(255);
 
 UPDATE NashvilleHousing
 SET PropertySplitAddress = SUBSTRING (PropertyAddress, 1, CHARINDEX(',', PropertyAddress) -1)
