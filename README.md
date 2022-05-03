@@ -151,7 +151,7 @@ This SQL code was  used to query for duplicates and then remove them from the ta
 	ORDER BY PropertySplitAddress
 
 
--- Then Delete Them
+	-- Then Delete Them
 
 	WITH RowNumCTE AS(
 	SELECT *,
