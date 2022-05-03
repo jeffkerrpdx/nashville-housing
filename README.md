@@ -22,21 +22,21 @@ We use the following language to query and then update the table:
 	ORDER BY ParcelID
 
 
-SELECT a.ParcelID, a.PropertyAddress, b.ParcelID, b.PropertyAddress, ISNULL(a.PropertyAddress,b.PropertyAddress)
-FROM PortfolioProject.dbo.NashvilleHousing a
-JOIN PortfolioProject.dbo.NashvilleHousing b
-	ON a.ParcelID = b.ParcelID
-	AND a.[UniqueID ] <> b.[UniqueID ]
-WHERE a.PropertyAddress is null
+	SELECT a.ParcelID, a.PropertyAddress, b.ParcelID, b.PropertyAddress, ISNULL(a.PropertyAddress,b.PropertyAddress)
+	FROM PortfolioProject.dbo.NashvilleHousing a
+	JOIN PortfolioProject.dbo.NashvilleHousing b
+		ON a.ParcelID = b.ParcelID
+		AND a.[UniqueID ] <> b.[UniqueID ]
+	WHERE a.PropertyAddress is null
 
 
-UPDATE a
-SET PropertyAddress = ISNULL(a.PropertyAddress,b.PropertyAddress)
-FROM PortfolioProject.dbo.NashvilleHousing a
-JOIN PortfolioProject.dbo.NashvilleHousing b
-	ON a.ParcelID = b.ParcelID
-	AND a.[UniqueID ] <> b.[UniqueID ]
-WHERE a.PropertyAddress is null
+	UPDATE a
+	SET PropertyAddress = ISNULL(a.PropertyAddress,b.PropertyAddress)
+	FROM PortfolioProject.dbo.NashvilleHousing a
+	JOIN PortfolioProject.dbo.NashvilleHousing b
+		ON a.ParcelID = b.ParcelID
+		AND a.[UniqueID ] <> b.[UniqueID ]
+	WHERE a.PropertyAddress is null
 
 Now there are no longer any null property addresses in our table.
 
