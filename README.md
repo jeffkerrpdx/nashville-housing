@@ -19,7 +19,7 @@ Date now appears as 2013-04-09
 
 There are 35 rows where the Property Address is null. On a list of housing sales, that is a problem. Upon further examination, there are duplicate Parcel ID numbers and in one row the address is blank, but in the other row, it is not.  We will develop an update statement that will populate the null rows with the addresses from the other rows, only in the situation where both rows have the same Parcel ID #.
 
-We use the following language to query and then update the table: 
+We use a SELF JOIN to query and then update the table: 
 	SELECT *
 	FROM PortfolioProject.dbo.NashvilleHousing
 	ORDER BY ParcelID
